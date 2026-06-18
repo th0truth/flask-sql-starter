@@ -5,7 +5,7 @@ def create_app() -> Flask:
   app = Flask(__name__)
 
   from .api.api import api_main_bp
-  app.register_blueprint(api_main_bp, url_prefix="/api")
+  app.register_blueprint(api_main_bp)
 
   return app
 
