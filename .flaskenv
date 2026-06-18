@@ -1,2 +1,0 @@
-FLASK_APP=src.app.main
-FLASK_DEBUG=1
