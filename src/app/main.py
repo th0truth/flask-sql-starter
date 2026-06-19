@@ -8,6 +8,9 @@ def create_app() -> Flask:
   from .api.api import api_main_bp
   app.register_blueprint(api_main_bp)
 
+  from .web.web_bp import web_bp
+  app.register_blueprint(web_bp)
+
   return app
 
 
