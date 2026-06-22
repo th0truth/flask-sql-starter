@@ -17,6 +17,8 @@ def create_app() -> Flask:
   db.init_app(app)
   migrate.init_app(app, db)
 
+  from .core.schema import UserBase, PostBase
+
   from .api.api import api_main_bp
   app.register_blueprint(api_main_bp)
 
