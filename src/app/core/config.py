@@ -1,4 +1,8 @@
+from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 
 class Settings(BaseSettings):  
@@ -8,6 +12,11 @@ class Settings(BaseSettings):
   # API versions
   API_V1_STR: str = "/api/v1"
   API_V2_STR: str = "/api/v2"
+
+
+  # SQLite settings
+  SQLALCHEMY_DATABASE_URI: str = f"sqlite:///{BASE_DIR / "instance" / "app.db"}"
+
 
   model_config = SettingsConfigDict(
     env_file=".env",
