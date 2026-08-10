@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from .core.config import settings
+from .core.config import BASE_DIR, settings
 
 
 db = SQLAlchemy()
@@ -12,6 +12,9 @@ migrate = Migrate()
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config.from_mapping(settings.model_dump())
+
+    # Ensure instance directory exists for SQLite
+    (BASE_DIR / "instance").mkdir(parents=True, exist_ok=True)
 
     # Initialize the db instance
     db.init_app(app)
