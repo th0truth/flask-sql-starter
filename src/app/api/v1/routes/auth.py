@@ -1,4 +1,7 @@
-from flask import Blueprint, flash, redirect
+from flask import (
+    Blueprint, flash,
+    redirect, render_template
+)
 
 from app.web.auth import LoginForm 
 
@@ -10,7 +13,7 @@ bp = Blueprint("Authentication", __name__)
 def login():
     form = LoginForm()
 
-    if form.validate_on_sumbit():
+    if form.validate_on_submit():
         flash(
             f"Login requested from user {form.username.data}, {form.remember_me.data}"
         )
