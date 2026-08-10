@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from .auth.routes import bp as auth_bp 
+from .auth.routes import bp as auth_bp
 from .main.routes import bp as main_bp
 
 # Initialize the /v1
