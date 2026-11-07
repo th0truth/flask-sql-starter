@@ -4,6 +4,7 @@
             <li><a href="{{ url_for('Web.Main.index') }}">Home</a></li>
             {% if current_user.is_anonymous %}
                 <li><a href="{{ url_for('Web.Auth.login') }}">Login</a></li>
+                <li><a href="{{ url_for('Web.Auth.register') }}">Register</a></li>
             {% else %}
                 <li><a href="{{ url_for('Web.Auth.logout') }}">Logout</a></li>
             {% endif %}
