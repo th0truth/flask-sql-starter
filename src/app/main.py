@@ -1,9 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 from .core.config import BASE_DIR, settings
-
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -19,8 +18,6 @@ def create_app() -> Flask:
     # Initialize the db instance
     db.init_app(app)
     migrate.init_app(app, db)
-
-    from .core.schema import UserBase, PostBase
 
     from .api.api import api_main_bp
 

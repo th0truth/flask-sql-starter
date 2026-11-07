@@ -1,9 +1,8 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify, request
 
-from app.main import db
-from app.core.security import Hash
 from app.core.schema import UserBase
-
+from app.core.security import Hash
+from app.main import db
 
 bp = Blueprint("Users", __name__)
 
@@ -16,16 +15,12 @@ def create_user():
     plain_password = data.get("password", "")
 
     if not plain_password:
-        return jsonify(
-            {"message": "Password required"}
-        ), 409
+        return jsonify({"message": "Password required"}), 409
 
     email = data.get("email")
 
     if not username or not email:
-        return jsonify(
-            {"message": "Please provide username and email"}
-        ), 400
+        return jsonify({"message": "Please provide username and email"}), 400
 
     existing_user = db.session.scalars(
         db.select(UserBase).where(
@@ -34,24 +29,18 @@ def create_user():
     ).first()
 
     if existing_user:
-       return jsonify(
-           {"message": "User already exists"}
-       ), 409
+        return jsonify({"message": "User already exists"}), 409
 
     new_user = UserBase(
-        username=username,
-        email=email,
-        password_hash=Hash.hash(plain_password)
+        username=username, email=email, password_hash=Hash.hash(plain_password)
     )
 
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({
-        "id": new_user.id,
-        "username": new_user.username,
-        "email": new_user.email
-    }), 201
+    return jsonify(
+        {"id": new_user.id, "username": new_user.username, "email": new_user.email}
+    ), 201
 
 
 @bp.route("/all", methods=["GET"])
@@ -61,8 +50,10 @@ def get_all_users():
     return jsonify(
         [
             {
-                "id": u.id, "username": u.username,
-                "email": u.email, "hash_password": u.password_hash
+                "id": u.id,
+                "username": u.username,
+                "email": u.email,
+                "hash_password": u.password_hash,
             }
             for u in users
         ]

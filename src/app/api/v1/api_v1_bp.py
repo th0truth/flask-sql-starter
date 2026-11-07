@@ -1,7 +1,6 @@
 from flask import Blueprint
 
-from .routes import users, auth
-
+from .routes import auth, users
 
 # Initialize the /v1
 api_v1_bp = Blueprint("v1", __name__)

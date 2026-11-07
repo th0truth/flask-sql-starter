@@ -1,4 +1,3 @@
 from .utils import Hash
 
-
-__all__ = ['Hash']
+__all__ = ["Hash"]

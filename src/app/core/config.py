@@ -1,6 +1,6 @@
 from pathlib import Path
-from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
@@ -14,9 +14,7 @@ class Settings(BaseSettings):
     API_V2_STR: str = "/api/v2"
 
     # SQLite settings
-    SQLALCHEMY_DATABASE_URI: str = (
-        f"sqlite:///{BASE_DIR / 'instance' / 'app.db'}"
-    )
+    SQLALCHEMY_DATABASE_URI: str = f"sqlite:///{BASE_DIR / 'instance' / 'app.db'}"
 
     model_config = SettingsConfigDict(
         env_file=".env", extra="ignore", env_ignore_empty=True

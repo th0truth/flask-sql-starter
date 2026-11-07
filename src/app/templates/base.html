@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  {% include "default/head.html" %}
+    <head>
+        {% include "default/head.html" %}
 
-  {% block head %}{% endblock %}
-</head>
-<body>
-  {% include "partials/header.html" %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% include "partials/header.html" %}
 
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
 
-  {% include "partials/messages.html" %}
+        {% include "partials/messages.html" %}
 
-  {% include "partials/footer.html" %}
+        {% include "partials/footer.html" %}
 
-  {% include "default/scripts.html" %}
+        {% include "default/scripts.html" %}
 
-  {% block scripts %}{% endblock %}
-</body>
+        {% block scripts %}{% endblock %}
+    </body>
 </html>
+

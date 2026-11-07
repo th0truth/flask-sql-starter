@@ -1,5 +1,4 @@
-from .user import UserBase
 from .post import PostBase
+from .user import UserBase
 
-
-__all__ = ["UserBase", "PostBase"]
+__all__ = ["PostBase", "UserBase"]

@@ -1,8 +1,8 @@
 from flask import Blueprint
 
-from .v1 import api_v1_bp
 from app.core.config import settings
 
+from .v1 import api_v1_bp
 
 # Initialize the main blueprint
 api_main_bp = Blueprint("API", __name__)
