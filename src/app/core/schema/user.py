@@ -4,6 +4,7 @@ import sqlalchemy as sa
 import sqlalchemy.orm as so
 from flask_login import UserMixin
 
+from app.core.security import Hash
 from app.main import db
 
 if TYPE_CHECKING:
@@ -21,6 +22,12 @@ class UserBase(UserMixin, db.Model):
     password_hash: so.Mapped[str] = so.mapped_column(sa.String(128))
 
     posts: so.Mapped[list["PostBase"]] = so.relationship(back_populates="author")
+
+    def set_password(self, password: str) -> None:
+        self.password_hash = Hash.hash(password)
+
+    def check_password(self, password: str) -> bool:
+        return Hash.verify(password, self.password_hash)
 
     def __repr__(self):
         return f"<User {self.username}>"
