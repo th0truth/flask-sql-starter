@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template
 
-from app.web.auth import LoginForm
+from app.web.forms import LoginForm
 
 bp = Blueprint("Authentication", __name__)
 

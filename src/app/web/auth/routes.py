@@ -4,16 +4,13 @@ from flask import (
     Blueprint, flash, redirect,
     render_template, request, url_for,
 )
-from flask_login import (
-    current_user, login_user, logout_user
-)
+from flask_login import current_user, login_user, logout_user
 
-from app.core.forms import RegistrationForm
 from app.core.schema import UserBase
 from app.core.security import Hash
 from app.main import db
 
-from .forms import LoginForm
+from app.web.forms import LoginForm, RegistrationForm
 
 
 bp = Blueprint("Auth", __name__)
@@ -28,9 +25,7 @@ def login():
 
     if form.validate_on_submit():
         user = db.session.scalar(
-            db.select(UserBase).where(
-                UserBase.username == form.username.data
-            )
+            db.select(UserBase).where(UserBase.username == form.username.data)
         )
 
         if not user or not Hash.verify(

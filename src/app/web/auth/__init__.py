@@ -1,3 +1,3 @@
-from .forms import LoginForm
+from app.web.forms import LoginForm, RegistrationForm
 
-__all__ = ["LoginForm"]
+__all__ = ["LoginForm", "RegistrationForm"]
