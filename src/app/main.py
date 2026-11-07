@@ -1,12 +1,9 @@
 from flask import Flask
-
+from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-from flask_login import LoginManager
-
 from .core.config import BASE_DIR, settings
-
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -23,7 +20,7 @@ def create_app() -> Flask:
     # Initialize extensions
     db.init_app(app)
     migrate.init_app(app, db)
-    
+
     login.init_app(app)
     login.login_view = "Web.Auth.login"
 

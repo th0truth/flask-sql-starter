@@ -1,14 +1,7 @@
 {% extends "base.html" %}
 
-{% block head %}
-    <link rel="stylesheet" href="/static/css/home.css">
-{% endblock %}
-
 {% block content %}
-    <h1>Homepage</h1>
-    <p>Welcome to the site.</p>
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <p>Welcome to the home page.</p>
 {% endblock %}
 
-{% block scripts %}
-    <script src="/static/js/home.js"></script>
-{% endblock %}
