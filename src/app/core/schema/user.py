@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 
 import sqlalchemy as sa
 import sqlalchemy.orm as so
+from flask_login import UserMixin
 
 from app.main import db
 
@@ -9,7 +10,7 @@ if TYPE_CHECKING:
     from .post import PostBase
 
 
-class UserBase(db.Model):
+class UserBase(UserMixin, db.Model):
     __tablename__ = "users"
 
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
